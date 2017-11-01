@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.GithubUser {
+    float: left;
+    text-align: left;
+    display: block;
+    width:50%;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    padding: 50px;
+    margin-top: 15px;
+}
+
+.GithubUser .GithubUser-Avatar {
+    float: left;
+    width: 30%;
+}
+
+.GithubUser .GithubUser-Avatar img{
+    height: 120px;
+    width: 120px;
+    border-radius: 60px;
+}
+
+.GithubUser .GithubUser-Details {
+    float: left;
+    width: 70%;
+}
+
+.GithubUser .GithubUser-Details .GithubUser-Name{
+   text-transform: uppercase;
+   letter-spacing: 0.3em;
+}
+
+
+.GithubUser .GithubUser-Details ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    float: left;
+    width: 70%;
+    margin-top: 20px;
+    border-left: 3px solid #ccc;
+    padding-left: 20px;
+}
+
+.GithubUser .GithubUser-Details ul li {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.GithubUser .GithubUser-Actions {
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+}
