@@ -3,6 +3,7 @@ import axios from 'axios';
 import './GithubUser.css';
 
 class GithubUser extends Component {
+    
     fetchLatestGists(e) {
         e.preventDefault();
         alert('gists');
@@ -14,6 +15,10 @@ class GithubUser extends Component {
     }
 
     render() {
+      if(!this.props.userData.avatar_url) {
+          return null;
+      }
+      
       return (
         <div className="GithubUser">
             <div className="GithubUser-Avatar">
