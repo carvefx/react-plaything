@@ -16,7 +16,13 @@ class GithubUser extends Component {
 
     render() {
       if(!this.props.userData.avatar_url) {
-          return null;
+          return (
+            <div className="GithubUser">
+              <div className="GithubUser-Woops">
+                  <h2>Hey, looks like you haven't fetched a user yet. Use the form above to do so!</h2>
+                </div>
+            </div>
+            );
       }
       
       return (
