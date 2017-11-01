@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {apiResponse: {}, username: ''};
     this.usernameUpdated = this.usernameUpdated.bind(this);
     this.fetchProfile = this.fetchProfile.bind(this);
+    this.triggerFetchProfile = this.triggerFetchProfile.bind(this);
   }
 
   fetchProfile() {
@@ -16,7 +17,7 @@ class App extends Component {
     
         axios.get(baseURL + '/users/' + this.state.username)
         .then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           this.setState({
             apiResponse: response.data
           });
@@ -26,8 +27,17 @@ class App extends Component {
         });
   }
 
+  triggerFetchProfile(profile) {
+    this.setState({
+      apiResponse: {},
+      username: profile.login
+    }, () => {
+      this.fetchProfile();
+    })
+  }
+
   usernameUpdated(e) {
-    this.setState({username: e.target.value});
+    this.setState({username: e.target.value, apiResponse: {}});
   }
 
   render() {
@@ -38,7 +48,7 @@ class App extends Component {
         </section>
 
         <section>
-          <GithubUser userData={this.state.apiResponse}/>
+          <GithubUser userData={this.state.apiResponse} onClickedNewProfile={this.triggerFetchProfile}/>
         </section>
       </div>
     );
