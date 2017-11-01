@@ -1,17 +1,50 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './GithubUser.css';
+import GithubUserGists from './GithubUserGists';
+import GithubUserFollowers from './GithubUserFollowers';
 
 class GithubUser extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            gists: [],
+            followers: []
+        };
+
+        this.fetchFollowers = this.fetchFollowers.bind(this);
+        this.fetchLatestGists = this.fetchLatestGists.bind(this);
+    }
+
     fetchLatestGists(e) {
         e.preventDefault();
-        alert('gists');
+
+        
+        axios.get(this.props.userData.url + '/gists')
+            .then(response => {
+              console.log(response.data);
+              this.setState({
+                gists: response.data
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
     }
 
     fetchFollowers(e) {
         e.preventDefault();
-        alert('followers');
+
+        axios.get(this.props.userData.url + '/followers')
+        .then(response => {
+          console.log(response.data);
+          this.setState({
+            followers: response.data
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
 
     render() {
@@ -42,6 +75,9 @@ class GithubUser extends Component {
             <div className="GithubUser-Actions">
                 <a href="#" onClick={this.fetchLatestGists}>see latest gists</a> | <a href="#" onClick={this.fetchFollowers}>see followers</a>
             </div>
+
+            <GithubUserGists gists={this.state.gists}></GithubUserGists>
+            <GithubUserFollowers followers={this.state.followers}></GithubUserFollowers>
         </div>
       )
     }
